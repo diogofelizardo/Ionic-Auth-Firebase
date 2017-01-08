@@ -1,1 +1,6 @@
 /* Empty. Add your own CSS if you like */
+.rounded {
+     border-radius: 50%;
+     -moz-border-radius: 50%;
+     -webkit-border-radius: 50%;
+}

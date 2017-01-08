@@ -26,6 +26,9 @@
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
+    <script src="lib/angularfire/dist/angularfire.min.js"></script>
+    <script src="lib/firebase/firebase.js"></script>
+
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
@@ -34,11 +37,43 @@
   </head>
   <body ng-app="starter">
 
-    <ion-pane>
+    <ion-pane ng-controller="AppCtrl">
       <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
+        <h1 class="title">Facebook Login com Firebase</h1>
       </ion-header-bar>
-      <ion-content>
+      <ion-content class="has-header" pandding>
+
+
+        
+        <div class="card">
+          <div class="item item-divider" align="center">
+            Login
+          </div>
+
+          <div class="item"  align="center">
+            <img src="{{usuario.photoURL}}" class="rounded">
+          </div>
+
+          <div class="item">
+            Nome: {{usuario.displayName}}
+          </div>
+
+          <div class="item">
+            Email: {{usuario.email}}
+          </div>
+
+          <div class="item">
+            <button class="button button-positive button-block" ng-click="LoginFacebook()">Login com Facebook</button>    
+            <button class="button button-balanced button-block" ng-click="getUser()">Pegar Dados Usuario</button>
+            <button class="button button-assertive button-block" ng-click="Logout(); getUser();">Sair</button>    
+            
+          </div>
+
+        </div>
+
+        
+
+
       </ion-content>
     </ion-pane>
   </body>
