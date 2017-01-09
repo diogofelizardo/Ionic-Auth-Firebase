@@ -36,37 +36,28 @@ angular.module('starter', ['ionic', 'firebase'])
 })
 
 
-.controller('AppCtrl', function($scope, Auth,$firebaseAuth){
+.controller('AppCtrl', function($scope, Auth, $firebaseAuth){
   
- 
+
   $scope.LoginFacebook = function(){
     var provider = new firebase.auth.FacebookAuthProvider();
     
     firebase.auth().signInWithPopup(provider).then(function(result) {
-      // Usuario logado      
+      $scope.$apply(function () {
+        $scope.usuario = result.user;
+      });
     }).catch(function(error) {
         // An error occurred
         console.log(error);
     });
   };  
 
-  $scope.getUser = function(){       
-
-    var user = firebase.auth().currentUser;
-    if (user) {
-        // Usuario logado
-        $scope.usuario = user;                    
-    } else {
-        // Usuario deslogado
-        $scope.usuario = "";
-    }
-  };  
-
-
   $scope.Logout = function(){   
     firebase.auth().signOut().then(function() {
+      $scope.$apply(function () {
+        $scope.usuario = "";
+      });
       console.log("Usuario deslogado");
-      $scope.usuario = "";
     }).catch(function (error){
       console.log(error);
     });    
